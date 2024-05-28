@@ -1,6 +1,7 @@
 import dotenv from "dotenv"
 import connectDB from "./database/index.js";
 import {app} from './app.js'
+import { User } from "./models/user.model.js";
 dotenv.config({
     path: './.env'
 })

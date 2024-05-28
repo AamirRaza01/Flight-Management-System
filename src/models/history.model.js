@@ -7,7 +7,7 @@ const historySchema = new Schema({
     },
     flight: {
         type: Schema.Types.ObjectId,
-        ref: "Flights"
+        ref: "Flight"
     },
     bookingDate: {
         type: Date,
