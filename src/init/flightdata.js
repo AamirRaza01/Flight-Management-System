@@ -36,6 +36,18 @@ const sampleFlights = [
         seatsAvailable: 100
     },
     {
+        airline: "SpiceJet",
+        flightNumber: "SG303",
+        departureCity: "Bangalore",
+        departureAirport: "BLR",
+        arrivalCity: "Bengaluru",
+        arrivalAirport: "BLL",
+        departureDateTime: "2024-05-31T11:00:00Z",
+        arrivalDateTime: "2024-05-31T11:30:00Z",
+        price: 3500,
+        seatsAvailable: 100
+    },
+    {
         airline: "Vistara",
         flightNumber: "UK404",
         departureCity: "Chennai",
@@ -86,6 +98,18 @@ const sampleFlights = [
     {
         airline: "Air India",
         flightNumber: "AI107",
+        departureCity: "Pune",
+        departureAirport: "PNQ",
+        arrivalCity: "Kolkata",
+        arrivalAirport: "GU" ,
+        departureDateTime: "2024-05-31T13:00:00Z",
+        arrivalDateTime: "2024-05-31T14:30:00Z",
+        price: 3800,
+        seatsAvailable: 100
+    },
+    {
+        airline: "Air India",
+        flightNumber: "AI107",
         departureCity: "Guwahati",
         departureAirport: "GU" ,
         arrivalCity: "Pune",
@@ -116,6 +140,18 @@ const sampleFlights = [
             arrivalCity: "Bengaluru",
             arrivalAirport: "BLR",
             departureDateTime: "2024-05-31T09:00:00Z",
+            arrivalDateTime: "2024-05-31T11:30:00Z",
+            price: 4500,
+            seatsAvailable: 150
+        },
+        {
+            airline: "IndiGo",
+            flightNumber: "6E202",
+            departureCity: "Mumbai",
+            departureAirport: "DEL",
+            arrivalCity: "Bengaluru",
+            arrivalAirport: "BLR",
+            departureDateTime: "2024-05-31T10:00:00Z",
             arrivalDateTime: "2024-05-31T11:30:00Z",
             price: 4500,
             seatsAvailable: 150
