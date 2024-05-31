@@ -9,9 +9,19 @@ const flightSchema = new Schema({
         type: String,
         required: true
     },
+    departureCity: {
+        type:String,
+        set: (v)=>v=v.toLowerCase(),
+        required:true
+    },
     departureAirport: {
         type: String,
         required: true
+    },
+    arrivalCity: {
+        type:String,
+        set: (v)=>v=v.toLowerCase(),
+        required:true
     },
     arrivalAirport: {
         type: String,
