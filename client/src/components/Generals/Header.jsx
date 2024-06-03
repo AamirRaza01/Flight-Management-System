@@ -10,7 +10,8 @@ const Header = () => {
 
 
   return (
-    <header className="flex justify-between items-center px-16 py-5 bg-white shadow">
+    <div className="fixed top-0 left-0 z-50 w-full ">
+    <header className="flex justify-between items-center px-16 py-4 bg-white ">
       <div className="text-2xl font-bold text-[#605DEC]">Tripma</div>
       <nav className="space-x-6">
         <a href="#" className="text-gray-600 hover:text-indigo-600">Flights</a>
@@ -28,6 +29,7 @@ const Header = () => {
           )}
       </nav>
     </header>
+    </div>
   );
 };
 

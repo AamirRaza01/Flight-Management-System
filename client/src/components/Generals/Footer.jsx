@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 px-16 py-8 text-sm absolute bottom-0 w-full ">
+    <footer className="bg-white px-16 py-8 text-sm  bottom-0 w-full  ">
       <div className="flex justify-between mb-4">
         <div className="font-bold text-3xl text-indigo-600 ">
             <h5 className=''>Tripma</h5>
@@ -13,6 +13,7 @@ const Footer = () => {
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">How it works</a>
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">careers</a>
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">Press</a>
+          <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">Documentation</a>
         </div>
         <div className="flex flex-col space-y-2">
           <h5 className="font-semibold text-[#6E7491] text-[18px]">Partner with us</h5>
@@ -38,7 +39,7 @@ const Footer = () => {
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">Mobile site</a>
         </div>
       </div>
-    <hr className='h-[3px]' />
+    <hr className='b' />
       <div className="social flex justify-between items-center w-full   mt-3">
         <div className=" flex gap-3 text text-[#7C8DB0] text-[16px] ">
             <a href="#" className='hover:text-[#6E7491]'>Twitter</a>
