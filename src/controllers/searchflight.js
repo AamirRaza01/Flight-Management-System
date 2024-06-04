@@ -11,6 +11,7 @@ const Search = asyncHandler(async (req, res) => {
     
     let result = [];
     let current = [];
+    let flightsTaken = [];
     
     function NotIn(arr, n) {
         for (let a of arr) {
@@ -21,39 +22,44 @@ const Search = asyncHandler(async (req, res) => {
         return true;
     }
     
-    async function findFlight(fromCity, toCity, level,startOfDay, fly) {
-        current.push(fromCity);
-        
+    async function findFlight(fromCity, toCity, level,startOfDay, fly,currentc) {
+        currentc.push(fromCity);
+        console.log(currentc);
         const endOfDay = new Date(fly);
         endOfDay.setDate(endOfDay.getDate() + 1);
        
-       let af = await Flight.find({
+        let af = await Flight.find({
             departureCity: fromCity,
             departureDateTime: { $gte: startOfDay, $lt: endOfDay }
         });
-        
+       
         for (let a of af) {
-            console.log("hello");
+           
             
             if (a.arrivalCity === toCity) {
-                current.push(a.arrivalCity);
+                console.log(a.departureCity);
+                currentc.push(a.arrivalCity);
+                flightsTaken.push(a);
+                result.push([...flightsTaken]);
                 
-                result.push([...current]);
-               
-                current.pop();
-                current.pop();
-                return;
+                flightsTaken.pop();
+                
+                currentc.pop();
+                
             }
-    
-            if (level < 4 && NotIn(current, a.arrivalCity)) {
-                await findFlight(a.arrivalCity, toCity, level + 1, a.departureDateTime,a.departureDateTime);
+ 
+            else if (level < 4 && NotIn(currentc, a.arrivalCity)) {
+                flightsTaken.push(a);
+                await findFlight(a.arrivalCity, toCity, level + 1, a.departureDateTime,a.departureDateTime,currentc);
             }
+  
         }
-        current.pop();
+        flightsTaken.pop();
+        currentc.pop();
     }
     
     
-    await findFlight(from, to, 0, startOfDay,startOfDay);
+    await findFlight(from, to, 0, startOfDay,startOfDay,current);
     console.log(result);
     if (!result.length) {
         res.send("no flights available");
