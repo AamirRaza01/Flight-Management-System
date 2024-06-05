@@ -14,4 +14,7 @@ reviewRouter.route("/:reviewId")
      .delete(verifyJWT,isOwner,deleteReview)
      .put(verifyJWT,isOwner,updateReview);
 
+reviewRouter.route("/:flightId").get(readFlightReview);
+reviewRouter.route("/:userId").get(verifyJWT,isOwner,readUserReview);
+
 export default reviewRouter
