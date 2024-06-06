@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DropdownComponent from './DropdownComponent';
 import DatePickerComponent from './DatePickerComponent';
 import NumberInputComponent from './NumberInputComponent';
+import { Link } from 'react-router-dom';
 
 const SearchComponent = () => {
   const [departure, setDeparture] = useState('');
@@ -85,9 +86,9 @@ const SearchComponent = () => {
           onChange={setAdults} 
         />
         </div>
-        <button type="submit" className=" bg-indigo-600 text-white px-8 hover:bg-[#1513A0]  py-2 rounded">
+        <Link to = "/search" type="submit" className=" bg-indigo-600 text-white px-8 hover:bg-[#1513A0]  py-2 rounded">
           Search
-        </button>
+        </Link>
         
       </form>
     </div>

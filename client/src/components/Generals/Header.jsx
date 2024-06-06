@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,8 +24,8 @@ const Header = () => {
             <button onClick={handleLogout} className="text-white bg-indigo-600 hover:bg-[#1513A0] px-4 py-2 rounded">Logout</button>
           ) : (
             <>
-              <button onClick={() => setShowSignInModal(true)} className="text-gray-600 hover:text-[#1513A0]">Sign in</button>
-              <button onClick={() => setShowSignUpModal(true)} className="text-white bg-indigo-600 hover:bg-[#1513A0]  px-4 py-2 rounded">Sign up</button>
+              <Link to = "/signin" onClick={() => setShowSignInModal(true)} className="text-gray-600 hover:text-[#1513A0]">Sign in</Link>
+              <Link to = "/signup" onClick={() => setShowSignUpModal(true)} className="text-white bg-indigo-600 hover:bg-[#1513A0]  px-4 py-2 rounded">Sign up</Link>
             </>
           )}
       </nav>

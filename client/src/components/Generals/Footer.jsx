@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-white px-16 py-8 text-sm  bottom-0 w-full  ">
+    <footer className="bg-white px-16 py-8 text-sm bottom-0 w-full">
       <div className="flex justify-between mb-4">
         <div className="font-bold text-3xl text-indigo-600 ">
             <h5 className=''>Tripma</h5>

@@ -2,15 +2,7 @@ import React, { useState, useEffect, useRef  } from 'react';
 
 const DropdownComponent = ({ label, value, onChange, placeholder, options }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [options, setOptions] = useState([
-  //   'New York (JFK)',
-  //   'Los Angeles (LAX)',
-  //   'Chicago (ORD)',
-  //   'San Francisco (SFO)',
-  //   'Miami (MIA)'
-  // ]);
-
-
+  
   // Fetch the airport options from the API when the component mounts
   // useEffect(() => {
   //   const fetchOptions = async () => {
@@ -27,7 +19,7 @@ const DropdownComponent = ({ label, value, onChange, placeholder, options }) => 
   // }, []);
 
   
-  // For closing the options when we click outside
+  // For closing the dropdown when we click outside
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -42,6 +34,8 @@ const DropdownComponent = ({ label, value, onChange, placeholder, options }) => 
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  
 
   const handleSelect = (option) => {
     onChange(option);
@@ -62,7 +56,7 @@ const DropdownComponent = ({ label, value, onChange, placeholder, options }) => 
         ></input>
         {isOpen && (
           <ul className="absolute bg-white shadow-lg rounded w-full mt-2 max-h-48  overflow-y-auto custom-scrollbar p-2">
-            {options.filter(option => option.toLowerCase().includes(value.toLowerCase())).map((option, index) => (
+            {options.map((option, index) => (
               <li 
                 key={index} 
                 onClick={() => handleSelect(option)} 
