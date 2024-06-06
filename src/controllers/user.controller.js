@@ -2,6 +2,7 @@ import { asyncHandler } from "../utilities/asyncHandler.js";
 import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utilities/apiResponse.js";
 import { ApiError } from "../utilities/apiError.js";
+import { History } from "../models/history.model.js";
 
 
 const register = asyncHandler(async (req,res) => {
@@ -205,9 +206,33 @@ const refreshAccessToken = asyncHandler(async (req,res) => {
     }
 })
 
+const getHistory = asyncHandler(async (req,res) => {
+        try {
+            const userId = req.user._id
+            const bookingHistory = await History.findById(userId)
+            .populate({
+                path: "flight",
+                select: 'airline flightNumber departureAirport arrivalAirport departureDateTime arrivalDateTime price seatsAvailable'
+            }).exec()
+
+            if(!bookingHistory){
+                throw new ApiError(400,"Something went wrong")//to keep in check
+            }
+
+            return res
+            .status(200)
+            .json(
+                new ApiResponse(200,bookingHistory,"Booking history fetched successfully")
+            )
+        } catch (error) {
+            throw new ApiError(500,"Something went wrong")
+        }
+})
+
 export {
     register,
     login,
     logout,
-    refreshAccessToken
+    refreshAccessToken,
+    getHistory
 }
