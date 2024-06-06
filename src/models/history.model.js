@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const historySchema = new Schema({
-    user: {
+    owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
     },
@@ -12,10 +12,6 @@ const historySchema = new Schema({
     bookingDate: {
         type: Date,
         default: Date.now
-    },
-    passengers: {
-        type: Number,
-        required: true
     },
     totalPrice: {
         type: Number,

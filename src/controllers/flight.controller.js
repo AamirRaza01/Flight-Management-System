@@ -5,6 +5,7 @@ import { ApiResponse } from "../utilities/apiResponse.js";
 
 const flightSearch = asyncHandler(async () => {
     //write flight searching method here
+    
 })
 
 export {flightSearch}
