@@ -1,10 +1,16 @@
 import React from 'react'
 import Footer from '../components/generals/Footer'
+import FlightTable from '../components/searchResult/FlightTable'
+import Header from '../components/generals/Header'
+import SearchBar from '../components/searchResult/SearchBar'
+import SearchComponent from '../components/searchComponent/SearchComponent'
+
 
 const SearchResultsPage = () => {
   return (
     <div>
-        <h1>Serch results will be here</h1>
+        <Header/>
+        <FlightTable/>
         <Footer/>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchComponent from '../search/SearchComponent'
+import SearchComponent from '../searchComponent/SearchComponent'
 
 function HeroSection() {
   return (
