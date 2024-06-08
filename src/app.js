@@ -24,10 +24,12 @@ import userRouter from "./routes/userRoutes.js";
 import flightRouter from "./routes/flightRoutes.js";
 import reviewRouter from "./routes/reviewRoutes.js";
 import bookingRouter from "./routes/bookRoutes.js";
+import notifyRoute from "./routes/notificationRoutes.js";
 
 app.use("/api/v1/users",userRouter)
 app.use("/api/v1/flights",flightRouter)
 app.use("/api/v1/review",reviewRouter)
 app.use("/api/v1/book",bookingRouter)
+app.use("/api/v1/notify",notifyRoute)
 
 export {app}

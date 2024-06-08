@@ -3,6 +3,7 @@ import { ApiError } from "../utilities/apiError.js";
 import { ApiResponse } from "../utilities/apiResponse.js";
 import { Flight } from "../models/flights.model.js";
 import { History } from "../models/history.model.js";
+import { sendNotification } from "./notification.controller.js";
 
 const bookFlight = asyncHandler(async (req,res) => {
     try {
@@ -12,6 +13,7 @@ const bookFlight = asyncHandler(async (req,res) => {
             throw new ApiError(400,"User is not authenticated")
         }
         const {flightId} = req.body
+        console.log(flightId)
     
         const flight = await Flight.findById(flightId)
     
@@ -19,7 +21,7 @@ const bookFlight = asyncHandler(async (req,res) => {
             throw new ApiError(400,"Flight not found")
         }
     
-        const totalPrice = flight.totalPrice
+        const totalPrice = flight.price
         const seatsAvailable = flight.seatsAvailable
     
         if(seatsAvailable<=0){
@@ -33,11 +35,13 @@ const bookFlight = asyncHandler(async (req,res) => {
         const newBooking = await History.create({
             owner: userId,
             flight: flight,
-            totalPrice,
+            totalPrice:totalPrice,
             status: "confirmed"
         })
     
         await newBooking.save();
+
+        sendNotification(userId, `Your flight ${flight.flightNumber} has been booked successfully.`);
         
         flight.seatsAvailable = seatsAvailable-1;
     
