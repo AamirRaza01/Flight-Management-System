@@ -16,23 +16,29 @@ const sendNotification = async (userId, message) => {
 };
 // get notification history
 const getNotification = asyncHandler(async (req,res) => {
-    const userId = req.user._id
-
-    if(!userId){
-        throw new ApiError(500,"User not authenticated")
+    try {
+        const userId = req.user._id
+        console.log(userId)
+    
+        if(!userId){
+            throw new ApiError(500,"User not authenticated")
+        }
+    
+        const notifications = await Notification.find({user: userId})
+        console.log(notifications)
+    
+        if(!notifications || notifications.length <= 0){
+            return res.status(200).json(new ApiResponse(200,"No notification yet"))
+        }
+    
+        return res
+        .status(200)
+        .json(
+            new ApiResponse(200,notifications)
+        )
+    } catch (error) {
+        throw new ApiError(400,"Something went wrong")
     }
-
-    const notifications = await Notification.findById(userId)
-
-    if(!notifications){
-        return res.status(200).json(new ApiResponse(200,"No notification yet"))
-    }
-
-    return res
-    .status(200)
-    .json(
-        new ApiResponse(200,notifications)
-    )
 
 })
 
