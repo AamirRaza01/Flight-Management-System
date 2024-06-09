@@ -44,7 +44,7 @@ const bookFlight = asyncHandler(async (req,res) => {
         sendNotification(userId, `Your flight ${flight.flightNumber} has been booked successfully.`);
         const hr = flight.departureDateTime.getHours()-1;
         let notify=new Date(flight.departureDateTime);
-        notify.setHours(hr-1);
+        notify.setHours(hr);
         const job = new CronJob(
             notify, 
             function () {
