@@ -20,9 +20,9 @@ const FlightDetails = ({ flight, onClose }) => {
       <p><strong>Total:</strong> ${totalPrice}</p>
       <button 
         className="mt-4 mr-2 px-4 py-2 bg-indigo-600 hover:bg-[#1513A0] text-white rounded" 
-        onClick={() => window.location.href = '/passenger-info'}
+        onClick={() => window.location.href = '/passenger-details'}
       >
-        Save and Close
+        Add Passenger
       </button>
       <button 
           className="mt-2 px-4 py-2 border-[1px] border-gray-400 hover:bg-gray-300 text-black rounded" 
