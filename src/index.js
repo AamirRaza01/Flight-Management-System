@@ -32,7 +32,9 @@ io.on("connection", (socket) => {
         console.log("Client disconnected");
     });
 });
+
 export {io}
+
 connectDB()
 .then(() => {
     server.on("error",(err) => {
