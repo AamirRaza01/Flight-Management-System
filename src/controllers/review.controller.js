@@ -72,7 +72,7 @@ const readFlightReview = asyncHandler(async (req,res) => {
              new ApiResponse(200,review,"These are your reviews")
           )
     }catch(error){
-        throw new ApiError(500,"Somethis went wrong");
+        throw new ApiError(500,"Something went wrong");
     }
 })
 

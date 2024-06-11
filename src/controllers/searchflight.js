@@ -5,7 +5,7 @@ import { ApiError } from "../utilities/apiError.js";
 
 const Search = asyncHandler(async (req, res) => {
     let { from, to, date } = req.body;
-   
+    const maxLayovers=4;
     let d = new Date(date);
     const startOfDay = new Date(d.setHours(0, 0, 0, 0));
     
@@ -48,9 +48,9 @@ const Search = asyncHandler(async (req, res) => {
                 
             }
  
-            else if (level < 4 && NotIn(currentc, a.arrivalCity)) {
+            else if (level < maxLayovers && NotIn(currentc, a.arrivalCity)) {
                 flightsTaken.push(a);
-                await findFlight(a.arrivalCity, toCity, level + 1, a.departureDateTime,a.departureDateTime,currentc);
+                await findFlight(a.arrivalCity, toCity, level + 1, a.arrivalDateTime,a.arrivalDateTime,currentc);
             }
   
         }
@@ -60,12 +60,16 @@ const Search = asyncHandler(async (req, res) => {
     
     
     await findFlight(from, to, 0, startOfDay,startOfDay,current);
-    console.log(result);
-    if (!result.length) {
-        res.send("no flights available");
-    } else {
-        res.send(result); 
+    let sendRes=[];
+    for(let i=1;i<maxLayovers;i++){
+         for(let r of result){
+             if(r.length == i){
+                sendRes.push(r);
+             }
+         }
     }
+    console.log(sendRes);
+    return res.status(200).json(new ApiResponse(200,sendRes,'Search Result'));
 });
 
 export { Search };
