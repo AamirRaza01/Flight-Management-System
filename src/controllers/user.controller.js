@@ -207,6 +207,9 @@ const refreshAccessToken = asyncHandler(async (req,res) => {
 })
 
 const getHistory = asyncHandler(async (req,res) => {
+
+    //this is to get the booking of the user,it will fetch the latest booking with the updates by the admin
+    
         try {
             const userId = req.user._id
             const bookingHistory = await History.findById(userId)

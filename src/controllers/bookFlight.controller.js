@@ -13,7 +13,6 @@ const bookFlight = asyncHandler(async (req,res) => {
             throw new ApiError(400,"User is not authenticated")
         }
         const {flightId} = req.body
-        console.log(flightId)
     
         const flight = await Flight.findById(flightId)
     
