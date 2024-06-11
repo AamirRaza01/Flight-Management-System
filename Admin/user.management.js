@@ -86,3 +86,40 @@ const createUser = asyncHandler(async (req,res) => {
         new ApiResponse(201,createdUser,"User created successfully")
     )
 })
+
+const updateUser = asyncHandler(async (req,res) => {
+    const userId = req.params._id //how does the userid sent ???
+
+    const {username,fullname,email} = req.body
+
+    const user = await User.findByIdAndUpdate(
+        userId,
+        {
+            username: username,
+            fullname: fullname,
+            email: email
+        },
+        {
+            new: true
+        }
+    )
+
+    if(!user){
+        throw new ApiError(400,'User not found')
+    }
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200,user,'User was updated')
+    )
+})
+
+export {
+    getAllUsers,
+    getUserbyUsername,
+    deleteAllUser,
+    deleteOneUser,
+    updateUser,
+    createUser
+}
