@@ -46,7 +46,9 @@ app.get("/flight",(req,res)=>{
 
 import userRouter from "./routes/userRoutes.js";
 import router from "./routes/searchRoutes.js";
+import adminFlightRouter from "./routes/adminFlightRoutes.js";
 app.use("/api/v1/users",userRouter);
+app.use("/api/v1/admin/flight",adminFlightRouter);
 app.use("/",router);
 // app.listen(8080,()=>{
 //     console.log("listening to port 8080");
