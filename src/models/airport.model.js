@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const airportSchema = new mongoose.Schema({
+const airportSchema = new Schema({
     code: {
         type: String,
         required: true,
@@ -25,4 +25,4 @@ const airportSchema = new mongoose.Schema({
     }
 });
 
-const Airport = mongoose.model('Airport', airportSchema);
+export const Airport = mongoose.model('Airport', airportSchema);
