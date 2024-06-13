@@ -6,6 +6,8 @@ import SignUpPage from './pages/SignUpPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import PassengerDetailsPage from './pages/PassengerDetailsPage';
 import ConfirmationPage from './pages/ConfirmationPage';
+import AdminLogin from './pages/AdminLogin';
+import AdminPanel from './pages/AdminDashboard';
 
 const AppRouter = () => {
   return (
@@ -17,6 +19,8 @@ const AppRouter = () => {
         <Route path="/search" element={<SearchResultsPage />} />
         <Route path="/passenger-details" element={<PassengerDetailsPage />} />
         <Route path="/confirmation" element={<ConfirmationPage/>} />
+        <Route path="/admin" element={<AdminLogin/>} />
+        <Route path="/admin-dashboard/*" element={<AdminPanel/>} />
       </Routes>
     </Router>
   );

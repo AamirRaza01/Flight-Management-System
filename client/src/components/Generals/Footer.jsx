@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -32,11 +33,17 @@ const Footer = () => {
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">Trust and safety</a>
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">Accessibility</a>
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-2">
           <h5 className="font-semibold text-[#6E7491] text-[18px]">Get the app</h5>
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">Tripma for android </a>
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">Tripma for ios</a>
           <a href="#" className="text-[#7C8DB0] hover:text-[#6E7491] text-[16px] font-normal">Mobile site</a>
+          </div>
+          <div className="flex flex-col space-y-2">
+          <h5 className="font-semibold text-[#6E7491] text-[18px]">Admin</h5>
+          <Link to = "/admin" className="text-[#6f82a8] hover:text-[#6E7491] text-[16px] font-normal">Admin Login</Link>
+          </div>
         </div>
       </div>
     <hr className='b' />
