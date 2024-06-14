@@ -1,6 +1,6 @@
 import mongoose,{Schema} from "mongoose";
 
-const airlineSchema = new mongoose.Schema({
+const airlineSchema = new Schema({
     airlineId: {
         type: String,
         required: true

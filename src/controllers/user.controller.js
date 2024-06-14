@@ -23,7 +23,7 @@ const register = asyncHandler(async (req,res) => {
     // .json(
     //     new ApiResponse(200,user,"done")
     // )
-    const {username,fullname,email,password} = req.body
+    const {username,fullname,email,password,secretkey} = req.body
     
     // if(!username || !fullname || !email || !password){
     //     throw new ApiError(400,"All fields are required")
@@ -64,7 +64,10 @@ const register = asyncHandler(async (req,res) => {
     if(!createdUser){
         throw new ApiError(500,"Something went wrong while registering the user")
     }
-
+    
+    if(secretkey === process.env.ADMIN_SECRET_KEY){
+        createdUser.isAdmin = true
+    }
     return res
     .status(201)
     .json(
@@ -209,15 +212,16 @@ const refreshAccessToken = asyncHandler(async (req,res) => {
 const getHistory = asyncHandler(async (req,res) => {
 
     //this is to get the booking of the user,it will fetch the latest booking with the updates by the admin
-    
+
         try {
             const userId = req.user._id
-            const bookingHistory = await History.findById(userId)
+
+            const bookingHistory = await History.find({owner: userId})
             .populate({
                 path: "flight",
                 select: 'airline flightNumber departureAirport arrivalAirport departureDateTime arrivalDateTime price seatsAvailable'
             }).exec()
-
+        
             if(!bookingHistory){
                 throw new ApiError(400,"Something went wrong")//to keep in check
             }

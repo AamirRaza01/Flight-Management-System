@@ -10,13 +10,7 @@ const createReview = asyncHandler(async (req,res) => {
         const {flightid,rating,reviewText} = req.body
         const userId = req.user._id
 
-        const flight = await Flight.findById(flightid)
-
-        if(!flight){
-            throw new ApiError(401,"Flight not found")
-        }
-
-        const review = new Review.create({
+        const review = await Review.create({
             user: userId,
             flight: flightid,
             rating,
@@ -41,25 +35,79 @@ const createReview = asyncHandler(async (req,res) => {
 
 //fetch review using user id
 const readUserReview = asyncHandler(async (req,res) => {
-    
+    try{
+        const userId = req.user._id;
+        const review = await Review.find({user: userId});
+        
+        return res
+          .status(200)
+          .json(
+             new ApiResponse(200,review,"These are your reviews")
+          )
+    }catch(error){
+        throw new ApiError(500,"Something went wrong");
+    }
+
+
 })
 
 //fetch review using flight id
 
 const readFlightReview = asyncHandler(async (req,res) => {
-    
+    try{
+        let {flightId} = req.params;
+        let review = await Review.find({flight: flightId});
+        if(!review){
+            throw new ApiError(500,"no review found");
+        }
+        return res
+          .status(200)
+          .json(
+             new ApiResponse(200,review,"These are your reviews")
+          )
+    }catch(error){
+        throw new ApiError(500,"Somethis went wrong");
+    }
 })
 
 //update review
 
 const updateReview = asyncHandler(async (req,res) => {
-    
+    try{
+        let {reviewId } = req.params;
+        let {rating,reviewText} = req.body;
+        let review = await Review.findByIdAndUpdate(reviewId,{rating: rating,reviewText: reviewText});
+        if(!review){
+            throw new ApiError(500,"no review found");
+        }
+        return res
+            .status(200)
+            .json(
+                new ApiResponse(200,review,"Your review was updated")
+            )
+    }catch(error){
+        throw new ApiError(500,"something went wrong");
+    }
 })
 
 //delete review
 
 const deleteReview = asyncHandler(async (req,res) => {
-    
+    try{
+        let {reviewId } = req.params;
+        let review = await Review.findByIdAndDelete(reviewId);
+        if(!review){
+            throw new ApiError(500,"no review found");
+        }
+        return res
+            .status(200)
+            .json(
+                new ApiResponse(200,review,"Your review was deleted")
+            )
+    }catch(error){
+        throw new ApiError(500,"something went wrong");
+    }
+
 })
 
 export {
