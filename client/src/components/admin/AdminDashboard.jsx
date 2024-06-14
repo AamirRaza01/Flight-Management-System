@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link, Route, Routes, useResolvedPath } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate, useResolvedPath } from 'react-router-dom';
 import AddFlight from './AddFlight';
 
 const AdminDashboard = () => {
   const { pathname } = useResolvedPath('');
+  const navigate = useNavigate()
 
   const handleLogout = () => {
-
+    //logout logic will be here
+    //for example:
+    navigate("/")
   }
 
   return (
@@ -34,18 +37,13 @@ const AdminDashboard = () => {
   );
 };
 
-// const AddFlight = () => (
+
+// To be used when Add User feature will be implemented
+// const AddUser = () => (
 //   <div>
-//     <h2 className="text-2xl font-bold mb-4">Add Flight</h2>
-//     {/* Add your form or content for adding flights here */}
+//     <h2 className="text-2xl font-bold mb-4">Add User</h2>
+//     {/* Add your form or content for adding users here */}
 //   </div>
 // );
-
-const AddUser = () => (
-  <div>
-    <h2 className="text-2xl font-bold mb-4">Add User</h2>
-    {/* Add your form or content for adding users here */}
-  </div>
-);
 
 export default AdminDashboard;

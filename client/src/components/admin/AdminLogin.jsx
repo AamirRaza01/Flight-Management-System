@@ -15,7 +15,7 @@ const AdminLogin = () => {
         event.preventDefault();
         let isAuthenticated = checkAuthenticationStatus();
 
-        if(!isAuthenticated){
+        if(isAuthenticated){
             navigate("/admin-dashboard")
         }else{
             alert("Improper Credentials")
