@@ -1,9 +1,9 @@
-import {Flight} from '../src/models/flights.model.js';
-import {ApiResponse} from '../src/utilities/apiResponse.js';
-import {ApiError} from '../src/utilities/apiError.js';
-import {asyncHandler} from '../src/utilities/asyncHandler.js';
-import { sendNotification } from "../src/controllers/notification.controller.js";
-import {History} from "../src/models/history.model.js";
+import {Flight} from '../server/src/models/flights.model.js';
+import {ApiResponse} from '../server/src/utilities/apiResponse.js';
+import {ApiError} from '../server/src/utilities/apiError.js';
+import {asyncHandler} from '../server/src/utilities/asyncHandler.js';
+import { sendNotification } from "../server/src/controllers/notification.controller.js";
+import {History} from "../server/src/models/history.model.js";
 // const editFlight = asyncHandler(async(req,res)=>{
 //     let {id} =req.params;
 //     let flight = await findByIdAndUpdate(id,{...req.body.flight});
