@@ -47,9 +47,13 @@ app.get("/flight",(req,res)=>{
 import userRouter from "./routes/userRoutes.js";
 import router from "./routes/searchRoutes.js";
 import adminFlightRouter from "./routes/adminFlightRoutes.js";
+import reviewRouter from "./routes/reviewRoutes.js";
+import airlineReviewRouter from "./routes/airlinereviewroutes.js";
 app.use("/api/v1/users",userRouter);
 app.use("/api/v1/admin/flight",adminFlightRouter);
-app.use("/",router);
+app.use("/api/v1/flight",router);
+app.use("/api/v1/flight/review",reviewRouter);
+app.use("/api/v1/airline/review",airlineReviewRouter);
 // app.listen(8080,()=>{
 //     console.log("listening to port 8080");
 // })

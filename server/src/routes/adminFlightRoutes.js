@@ -1,7 +1,8 @@
-import {addFlight,getFlight,getFlightByAirline,getFlightForUpdate,cancelFlight} from "../admin/flight.controller.js"
+import pkg from '../../../admin/flight.controller.js';
+const {addFlight,getFlight,getFlightByAirline,getFlightForUpdate,cancelFlight} = pkg;
 import { Router } from "express";
 
-const adminFlightRouter = Router;
+const adminFlightRouter = Router();
 
 adminFlightRouter.route("/add").post(addFlight);
 adminFlightRouter.route("/get").get(getFlight);

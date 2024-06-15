@@ -8,13 +8,13 @@ import { verifyJWT } from "../middlewares/authentication.js";
 import { isOwner } from "../middlewares/ownerAuth.js";
 const reviewRouter = Router()
 
-reviewRouter.route("/createReview").post(verifyJWT,createReview);
+reviewRouter.route("/createReview/:flightId").post(verifyJWT,createReview);
 
 reviewRouter.route("/:reviewId")
      .delete(verifyJWT,isOwner,deleteReview)
      .put(verifyJWT,isOwner,updateReview);
 
 reviewRouter.route("/:flightId").get(readFlightReview);
-reviewRouter.route("/:userId").get(verifyJWT,isOwner,readUserReview);
+reviewRouter.route("/user").get(verifyJWT,readUserReview);
 
 export default reviewRouter

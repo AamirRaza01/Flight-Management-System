@@ -7,22 +7,23 @@ import { Flight } from "../models/flights.model.js";
 //save review
 const createReview = asyncHandler(async (req,res) => {
     try {
-        const {flightid,rating,reviewText} = req.body
+        const {rating,reviewText} = req.body
+        const {flightId} = req.params
         const userId = req.user._id
 
-        const flight = await Flight.findById(flightid)
+        const flight = await Flight.findById(flightId)
 
         if(!flight){
             throw new ApiError(401,"Flight not found")
         }
 
-        const review = new Review.create({
+        const review = new Review({
             user: userId,
-            flight: flightid,
+            flight: flightId,
             rating,
             reviewText
         })
-
+        await review.save();
         if(!review){
             throw new ApiError(401,"Review not created")
         }
@@ -33,7 +34,7 @@ const createReview = asyncHandler(async (req,res) => {
             new ApiResponse(200,review,"Review is created")
         )
     } catch (error) {
-        throw new ApiError(500,"something went wrong")
+        throw new ApiError(500,error)
     }
 })
 
@@ -42,7 +43,7 @@ const createReview = asyncHandler(async (req,res) => {
 //fetch review using user id
 const readUserReview = asyncHandler(async (req,res) => {
     try{
-        let {userId} = req.params;
+        let userId = req.user._id;
         let review = await Review.find({user: userId});
         
         return res
@@ -51,7 +52,7 @@ const readUserReview = asyncHandler(async (req,res) => {
              new ApiResponse(200,review,"These are your reviews")
           )
     }catch(error){
-        throw new ApiError(500,"Somethis went wrong");
+        throw new ApiError(500,error);
     }
 
 
@@ -61,7 +62,7 @@ const readUserReview = asyncHandler(async (req,res) => {
 
 const readFlightReview = asyncHandler(async (req,res) => {
     try{
-        let {flightid} = req.params;
+        let {flightId} = req.params;
         let review = await Review.find({flight: flightId});
         if(!review){
             throw new ApiError(500,"no review found");
@@ -72,7 +73,7 @@ const readFlightReview = asyncHandler(async (req,res) => {
              new ApiResponse(200,review,"These are your reviews")
           )
     }catch(error){
-        throw new ApiError(500,"Something went wrong");
+        throw new ApiError(500,error);
     }
 })
 
@@ -92,7 +93,7 @@ const updateReview = asyncHandler(async (req,res) => {
                 new ApiResponse(200,review,"Your review was updated")
             )
     }catch(error){
-        throw new ApiError(500,"something went wrong");
+        throw new ApiError(500,error);
     }
 })
 
@@ -111,7 +112,7 @@ const deleteReview = asyncHandler(async (req,res) => {
                 new ApiResponse(200,review,"Your review was deleted")
             )
     }catch(error){
-        throw new ApiError(500,"something went wrong");
+        throw new ApiError(500,error);
     }
 
 })

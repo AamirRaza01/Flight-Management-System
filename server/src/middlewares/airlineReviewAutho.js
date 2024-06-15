@@ -1,13 +1,13 @@
-import { Review } from "../models/review.model.js";
+import { AirlineReview } from "../models/airline.review.js";
 import { ApiError } from "../utilities/apiError.js";
 import { asyncHandler } from "../utilities/asyncHandler.js";
 
 
-export const isOwner = asyncHandler(async (req,res,next)=>{
+export const isRevOwner = asyncHandler(async (req,res,next)=>{
    try{
          let userId = req.user._id;
          let {reviewId} = req.params;
-         let review =  await Review.findById(reviewId);
+         let review =  await AirlineReview.findById(reviewId);
          if(!review){
             throw new ApiError(500,"review not found");
          }

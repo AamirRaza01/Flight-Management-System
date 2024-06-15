@@ -28,10 +28,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    profilePicture: {
-        type: String,
-        required: true
-    },
+    // profilePicture: {
+    //     type: String,
+    //     required: true
+    // },
     selectionHistory: [
         {
             type: Schema.Types.ObjectId,
